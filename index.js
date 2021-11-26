@@ -12,7 +12,6 @@ app.use(cors());
 app.use(express.json())
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.n6yc8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-// console.log(uri);
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 async function run() {
@@ -22,7 +21,7 @@ async function run() {
         const myserviceCollection = database.collection('myservice');
         const servicesCollection = database.collection('services');
 
-        // get all service
+        // get all service data
         app.get('/services', async (req, res) => {
             const cursor = servicesCollection.find({});
             const service = await cursor.toArray();
